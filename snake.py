@@ -1,12 +1,17 @@
-"""Snake, classic arcade game.
-
-Exercises
-
-1. How do you make the snake faster or slower?
-2. How can you make the snake go around the edges?
-3. How would you move the food?
-4. Change the snake to respond to mouse clicks.
 """
+Tec de Monterrey
+
+Proyecto: Snake
+Materia: Herramientas computacionales: El arte de la progrmación
+Autores: Yerik Escobar Asprón y Diego Lemus Mejía
+
+Descripcion:
+Videojuego Snake desarrollado con Python y Turtle.
+Basado en el codigo original de Grant Jenks.
+
+Modificaciones:
+- Movimiento aleatorio de comida.
+- Colores aleatorios distintos para serpiente y comida."""
 
 from random import randrange
 from turtle import *
@@ -16,7 +21,7 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
-
+food_steps = 0
 
 def change(x, y):
     """Change snake direction."""
@@ -47,6 +52,22 @@ def move():
         food.y = randrange(-15, 15) * 10
     else:
         snake.pop(0)
+
+    #Modificación
+    global food_steps
+
+    food_steps += 1
+
+    if food_steps % 5 == 0:
+        directions =[
+            vector(10, 0),
+            vector(-10, 0),
+            vector(0, 10),
+            vector(0, -10)
+        ]
+     
+        direction = directions [randrange(4)]
+        food.move(direction)
 
     clear()
 
