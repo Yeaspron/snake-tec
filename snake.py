@@ -67,7 +67,12 @@ def move():
         ]
      
         direction = directions [randrange(4)]
-        food.move(direction)
+        nueva_comida = food.copy()
+        nueva_comida.move(direction)
+
+        if inside(nueva_comida) and nueva_comida not in snake:
+            food.x = nueva_comida.x
+            food.y = nueva_comida.y
 
     clear()
 
